@@ -35,15 +35,12 @@ function App() {
   }
 
   const watcher = async () => {
-    const rooms = await supabase.channel('custom-all-channel')
-    .on(
-      'postgres_changes',
-      { event: 'UPDATE', schema: 'public', table: 'rooms' },
-      async (payload) => {
-        console.log('Chats changed')
-        console.log('Change received!', payload)
-      }
-    )
+    await supabase
+    .channel('table_db_changes')
+    .on('postgres_changes', { event: '*', schema: 'public', table: 'rooms' }, payload => {
+      // console.log('Change received!', payload)
+      getAllRoomChats()
+    })
     .subscribe()
   }
 
@@ -52,9 +49,8 @@ function App() {
     .then((response) => {
       const responseChatData = response.data;
 
-      console.log(responseChatData)
       if(responseChatData === null){
-
+        
       }else {
         const previousChats = responseChatData.map((chat, key) => (
           <Chat 
@@ -78,7 +74,6 @@ function App() {
     if(user){
       setAuth(user.aud)
       setUser(user)
-      console.log(user)
     }
   }
 
@@ -94,9 +89,9 @@ function App() {
   }
 
   useEffect(() => {
-    getAllRoomChats()
-    getUser()
-    watcher()
+    getAllRoomChats();
+    getUser();
+    watcher();
   }, [])
 
   return (
@@ -130,8 +125,14 @@ function App() {
         }
       </article>
       <form onSubmit={handleSend}>
-        <input required value={message} onChange={(e) => setMessage(e.currentTarget.value)} type='text' placeholder='Enter something...' />
-        <button type='submit'>SEND</button>
+        { Auth == 'authenticated' ? 
+          <>
+            <input required value={message} onChange={(e) => setMessage(e.currentTarget.value)} type='text' placeholder='Enter something...' />
+            <button type='submit'>SEND</button>
+          </> : ''
+        }
+        {/* <input required value={message} onChange={(e) => setMessage(e.currentTarget.value)} type='text' placeholder='Enter something...' />
+        <button type='submit'>SEND</button> */}
       </form>
     </main>
   )
