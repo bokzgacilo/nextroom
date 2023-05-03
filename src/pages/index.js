@@ -28,7 +28,7 @@ function App() {
       picture: User.user_metadata.picture
     }
 
-    axios.post('http://localhost:3000/api/postchat', data)
+    axios.post('https://nextroom.vercel.app/api/postchat', data)
     .then((response) => {
       console.log('Chat updated')
     })
@@ -45,7 +45,7 @@ function App() {
   }
 
   const getAllRoomChats = async () => {
-    axios.get('http://localhost:3000/api/hello')
+    axios.get('https://nextroom.vercel.app/api/hello')
     .then((response) => {
       const responseChatData = response.data;
 
