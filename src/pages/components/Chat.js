@@ -11,10 +11,10 @@ export default function Chat(props) {
       <div className='avatar'>
         <Image 
           loader={myLoader}
-          width={50}
-          height={50}
+          width={35}
+          height={35}
           alt="Sender Avatar" 
-          src='https://www.wipo.int/export/sites/www/wipo_magazine/images/en/2018/2018_01_art_7_1_400.jpg' 
+          src={props.picture} 
         />
       </div>
       <div className={style.details}>

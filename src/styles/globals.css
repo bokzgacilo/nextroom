@@ -60,6 +60,7 @@ header {
   flex-direction: row;
   height: 8vh;
   align-items: center;
+  justify-content: space-between;
 }
 
 article {
