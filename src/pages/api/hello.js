@@ -1,5 +1,6 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
+var db = new sqlite3.Database('../database/user.db');
 
 export default function handler(req, res) {
-  res.status(200).json({ name: 'John Doe' })
+  res.send({ name: 'John Doe' })
 }
