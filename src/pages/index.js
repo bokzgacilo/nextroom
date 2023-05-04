@@ -40,7 +40,7 @@ function App() {
       picture: User.user_metadata.picture
     }
 
-    axios.post('http://localhost:3000/api/postchat', data)
+    axios.post('https://nextroom.vercel.app/api/postchat', data)
     .then((response) => {
       console.log('Chat updated')
     })
@@ -80,7 +80,7 @@ function App() {
       filename: FileToUpload.name
     }
 
-    axios.post('http://localhost:3000/api/postfile', filedata)
+    axios.post('https://nextroom.vercel.app/api/postfile', filedata)
     .then((response) => {
       console.log(response)
     })
@@ -102,7 +102,7 @@ function App() {
 
   useEffect(() => {
     const getAllChats = async () => {
-      axios.get('http://localhost:3000/api/getchat')
+      axios.get('https://nextroom.vercel.app/api/getchat')
       .then((response) => {
         const responseChatData = response.data;
   
@@ -121,7 +121,7 @@ function App() {
     }
 
     const getAllFiles = async () => {
-      axios.get('http://localhost:3000/api/getfile')
+      axios.get('https://nextroom.vercel.app/api/getfile')
       .then((response) => {
         const responseChatData = response.data;
   
