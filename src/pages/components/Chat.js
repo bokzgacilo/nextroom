@@ -11,10 +11,11 @@ export default function Chat(props) {
       <div className='avatar'>
         <Image 
           loader={myLoader}
-          width={35}
-          height={35}
-          alt="Sender Avatar" 
+          width={40}
+          height={40}
+          alt={props.sender}
           src={props.picture} 
+          referrerPolicy="no-referrer"
         />
       </div>
       <div className={style.details}>
